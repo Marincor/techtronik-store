@@ -15,7 +15,7 @@ export const BannerProducts = [
   { name: "Keyboard Xzone GTB-01", price: 258, img: GTB, id: "04" },
   { name: "Keyboard Bright 0541", price: 340, img: BrightKey, id: "05" },
   { name: "Keyboard Klim Chroma", price: 450, img: Klim, id: "06" },
-  { name: "MousePad P60", price: 85, img: P60, id: "07" },
-  { name: "MousePad Nemesis", price: 106, img: Nemesis, id: "08" },
-  { name: "MousePad RedDragon", price: 210, img: RedDragon, id: "09" },
+  { name: "Mouse Pad P60", price: 85, img: P60, id: "07" },
+  { name: "Mouse Pad Nemesis", price: 106, img: Nemesis, id: "08" },
+  { name: "Mouse Pad RedDragon", price: 210, img: RedDragon, id: "09" },
 ];
