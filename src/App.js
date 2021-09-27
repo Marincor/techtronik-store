@@ -2,7 +2,8 @@ import Header from "./components/Header";
 import Mouses from "./components/Mouses";
 import {BrowserRouter as Router} from 'react-router-dom'
 import { Switch, Route } from "react-router";
-import { GlobalStyle } from "./assets/GlobalStyles";
+import { GlobalStyle } from "./assets/css/GlobalStyles";
+import Home from './components/HomePage/index.jsx'
 
 function App() {
   return (
@@ -13,7 +14,14 @@ function App() {
 
       <Header />
       <Switch> 
-        <Route path='/mouses'> 
+
+        <Route exact path='/'>
+
+              <Home />
+          </Route>
+
+
+        <Route exact path='/mouses'> 
           
       <Mouses />
         </Route>
