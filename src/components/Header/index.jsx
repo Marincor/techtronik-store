@@ -36,6 +36,7 @@ export default function Header () {
 
             <Ul>
 
+            <Items url='/' text='home' />
             <Items url='/mouses' text='mouses' />
             <Items url='/keyboards' text='keyboards' />
             <Items url='/headphones' text='headphones' />

@@ -33,6 +33,6 @@ export const ButtonAddCard = styled.button`
 
 `;
 
-export const IconAdd = styled.img`
-  width: 1rem;
+export const Icons = styled.img`
+  width: ${(props) => props.secundary? '2rem': '1rem'};
 `;
