@@ -4,10 +4,13 @@ import {BrowserRouter as Router} from 'react-router-dom'
 import { Switch, Route } from "react-router";
 import { GlobalStyle } from "./assets/css/GlobalStyles";
 import Home from './components/HomePage/index.jsx'
+import { ItemsProvider } from "./contexts/items";
 
 function App() {
   return (
     <>
+    <ItemsProvider>
+
     <GlobalStyle />
     <Router>
 
@@ -27,6 +30,7 @@ function App() {
         </Route>
       </Switch>
     </Router>
+    </ItemsProvider>
     </>
   );
 }

@@ -17,7 +17,7 @@ export const PriceBox = styled.p`
 `;
 
 export const ImgBox = styled.img`
-  width: 25rem;
+  width: 22rem;
   height: 18rem;
   margin-bottom: 2rem;
 `;
