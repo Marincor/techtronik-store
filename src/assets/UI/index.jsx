@@ -23,7 +23,7 @@ export const ImgBox = styled.img`
 `;
 
 export const ButtonAddCard = styled.button`
-  border: none;
+  border-radius: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;

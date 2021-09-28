@@ -13,7 +13,7 @@ const BaskBox = styled.div `
 
 
 
-export default function CartModal (props) {
+export default function Cart (props) {
 
 
 
@@ -21,7 +21,7 @@ export default function CartModal (props) {
 
         <BaskBox>
             <Icons secundary src={CartIcon}/>
-            {props.items}
+            
         </BaskBox>
     )
 }

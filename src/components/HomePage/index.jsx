@@ -2,18 +2,17 @@ import styled from "styled-components";
 import Carousel, { autoplayPlugin } from "@brainhubeu/react-carousel";
 import "@brainhubeu/react-carousel/lib/style.css";
 import { BannerProducts } from "../products/banner";
-import Plus from "../../assets/img/plus.svg";
 import {
   ButtonAddCard,
-  Icons,
   ImgBox,
   PriceBox,
   TitleBox,
 } from "../../assets/UI";
-import CartModal from "../Cart/Icon";
 import { useState } from "react";
 import Lottie from 'react-lottie';
 import LoadingAnimation from '../../assets/lotties/loading.json'
+import CartModal from "../Cart/Modal";
+import Cart from '../Cart/Icon/index'
 
 const Div = styled.div`
   display: flex;
@@ -86,7 +85,7 @@ export default function Home() {
 
     
     <Div>
-      <CartModal items={includedItems.length} />
+      <Cart />
   
         {loading? <BoxLoading>loading your order !
 
@@ -122,7 +121,7 @@ export default function Home() {
               <>
                 <ImgBox src={item.img} alt={item.name} />
                 <ButtonAddCard onClick={increaseItems}>
-                  <Icons src={Plus} alt="add icon" /> add to cart
+                + add to cart
                 </ButtonAddCard>
               </>
             </BoxCard>
@@ -130,17 +129,12 @@ export default function Home() {
         })}
       </Carousel>
     }
-  <div>
-{console.log(includedItems)}
-  {includedItems.map((i) =>{
+  
 
 
-    return(
-
-      <h2>{i.name}</h2>
-    )
-  })}
-  </div>
+   
+   
+ 
 
     </Div>
   );
