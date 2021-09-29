@@ -80,13 +80,22 @@ export default function Home() {
         arr.push(currentItem)
           setIncludedItems(arr)
 
+          console.log('cenario um')
+
       }
-      else if( arr.length !== 0 && currentArr !== null) {
+      else if( arr.length > 0 && currentArr !== null) {
 
         currentArr._amount += 1;
+    
 
         setIncludedItems(arr)
+        console.log('cenario dois')
       
+      } else {
+
+           
+        arr.push(currentItem)
+        setIncludedItems(arr)
       }
 
   
@@ -148,9 +157,29 @@ export default function Home() {
 
   }
 
+
+function amountCount() {
+  let currentAmountOfItems= 0;
+
+  includedItems.forEach((item) =>{
+ 
+    currentAmountOfItems+= item.amount;
+ 
+  })
+ 
+  return currentAmountOfItems
+
+
+}
+
+ 
+
+
+  
+
   return (
     <Div>
-      <Cart items={'includedItems'} onClick={openCart} />
+      <Cart items={amountCount()} onClick={openCart} />
       {renderContent()}
       {
         cartIsOpen?  <CartModal items={includedItems} /> : false

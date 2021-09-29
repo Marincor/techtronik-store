@@ -8,7 +8,7 @@ export default class ItemModels {
     this._name = name;
     this._price = price;
     this._img = img;
-    this._amount = 0;
+    this._amount = 1;
   }
 
   get name() {
@@ -26,8 +26,5 @@ export default class ItemModels {
     return this._amount;
   }
 
-  increaseAmount() {
-    this._amount += 1;
-  }
 }
 

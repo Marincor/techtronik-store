@@ -57,6 +57,16 @@ const TitleItems = styled.h2 `
 
 `
 
+const AmountItems = styled.p `
+
+    font-size: 0.8rem;
+    color: darkgreen;
+    font-weight: bold;
+    margin: 1rem;
+    background-color: #dbe2da;
+    padding: 1rem;
+    border-radius: 2rem;
+`
 const PriceItems = styled.p `
 
     font-size: 0.8rem;
@@ -84,7 +94,7 @@ margin: 1rem;
 
 export default function CartModal (props) {
 
-    console.log(props.items)
+    
   
     return(
 
@@ -100,7 +110,7 @@ export default function CartModal (props) {
             
              
                     <TitleItems> {item.name} </TitleItems>
-                  
+                    <AmountItems> {item.amount} </AmountItems>
                     <PriceItems> {item.price? `$ ${item.price}`: ''}</PriceItems>
                     <ImgItems src={item.img}   />
                     <BtnDelete> 🗑 Delete</BtnDelete>

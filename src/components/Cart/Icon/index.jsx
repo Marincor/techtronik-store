@@ -10,6 +10,9 @@ const BaskBox = styled.button `
     cursor: pointer;
     border: none;
     background: transparent;
+    color: ${(props) => props.color};
+    font-weight: bold;
+    
 
 `
 
@@ -21,7 +24,7 @@ export default function Cart (props) {
 
     return(
 
-        <BaskBox onClick={props.onClick} >
+        <BaskBox onClick={props.onClick} color={props.items > 0? 'green': 'black'} >
             <Icons secundary src={CartIcon}/>
             {props.items}
         </BaskBox>
