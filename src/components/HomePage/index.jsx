@@ -9,6 +9,7 @@ import LoadingAnimation from "../../assets/lotties/loading.json";
 import CartModal from "../Cart/Modal";
 import Cart from "../Cart/Icon/index";
 import { ItemsContexts } from "../../contexts/items";
+import ItemModels from "../../models/itemsModels";
 
 const Div = styled.div`
   display: flex;
@@ -42,7 +43,7 @@ export default function Home() {
   const {includedItems, setIncludedItems} = useContext(ItemsContexts)
   const [cartIsOpen, setCartIsOpen] = useState(false)
 
-  function increaseItems(e) {
+  function addToCart(e) {
     e.preventDefault();
 
     setLoading(true);
@@ -64,19 +65,34 @@ export default function Home() {
       e.target.parentElement.parentElement.firstChild.firstChild.nextSibling
         .nextSibling.src;
 
-    const toTheBasketItems = {
-      name: currentNameItem,
-      price: CurrentPriceItemFormated,
-      img: currentImage,
-    };
+
+  
+
+    const currentItem = new ItemModels(currentNameItem, CurrentPriceItemFormated, currentImage);
 
     const arr = includedItems || [];
 
-    arr.push(toTheBasketItems);
 
-    setIncludedItems(arr);
+    let currentArr = arr.find(atribute => atribute._name === currentNameItem) || null;
+
+      if(arr.length === 0) {
+
+        arr.push(currentItem)
+          setIncludedItems(arr)
+
+      }
+      else if( arr.length !== 0 && currentArr !== null) {
+
+        currentArr._amount += 1;
+
+        setIncludedItems(arr)
+      
+      }
+
+  
   }
 
+  console.log(includedItems)
   function renderContent() {
     if (loading) {
       return (
@@ -111,7 +127,7 @@ export default function Home() {
               </>  
               <>
                 <ImgBox src={item.img} alt={item.name} />
-                <ButtonAddCard onClick={increaseItems}>
+                <ButtonAddCard onClick={addToCart}>
                   + add to cart
                 </ButtonAddCard>
               </>
@@ -134,7 +150,7 @@ export default function Home() {
 
   return (
     <Div>
-      <Cart items={includedItems.length} onClick={openCart} />
+      <Cart items={'includedItems'} onClick={openCart} />
       {renderContent()}
       {
         cartIsOpen?  <CartModal items={includedItems} /> : false
