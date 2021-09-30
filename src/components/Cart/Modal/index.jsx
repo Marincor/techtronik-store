@@ -92,31 +92,83 @@ margin: 1rem;
 
 `
 
+const EmptyCartAlert = styled.p `
+
+    margin: 50% auto;
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: sans-serif;
+
+`
 export default function CartModal (props) {
 
     
+    function deleteItem(e) {
+        const currentItemById = JSON.parse( e.target.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.id);
+  
+        const  arr = props.items || [];
+
+        const findItem = arr.find(atribute => atribute._id === currentItemById)
+
+        function removerPorId(array, id) {
+            return array.filter(function(el) { 
+              return el._id !== id; 
+            });
+          }
+
+       if(findItem._amount >1) {
+
+
+            findItem._amount -= 1;
+
+            props.setItems(arr)
+
+            props.setCart(false)
+
+            setTimeout(() => {
+                props.setCart(true)
+            }, 1);
+
+       } else {
+
+        
+
+        props.setItems(removerPorId(arr, currentItemById))
+
+       }
+       
+      
+    }
+
   
     return(
 
         <ModalCart>
 
 
-            {props.items.map((item) => {
+            {props.items.length > 0? 
+            
+        
+            props.items.map((item) => {
 
                 return(
 
-                    <ModalItems> 
+                  
+
+                    <ModalItems key={item._id}> 
 
             
              
-                    <TitleItems> {item.name} </TitleItems>
-                    <AmountItems> {item.amount} </AmountItems>
+                    <TitleItems id={item._id}> {item.name} </TitleItems>
+                    <AmountItems> {item._amount} </AmountItems>
                     <PriceItems> {item.price? `$ ${item.price}`: ''}</PriceItems>
                     <ImgItems src={item.img}   />
-                    <BtnDelete> 🗑 Delete</BtnDelete>
+                    <BtnDelete onClick={deleteItem}> 🗑 Delete</BtnDelete>
                     </ModalItems>
                 )
-            })}
+            })
+        : <EmptyCartAlert>Empty !</EmptyCartAlert>}
+           
          
         </ModalCart>
     )

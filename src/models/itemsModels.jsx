@@ -3,12 +3,14 @@ export default class ItemModels {
   _price;
   _img;
   _amount;
+  _id;
 
   constructor(name, price, img) {
     this._name = name;
     this._price = price;
     this._img = img;
     this._amount = 1;
+    this._id = Math.round(Math.random()*25)
   }
 
   get name() {

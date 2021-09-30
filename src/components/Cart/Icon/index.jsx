@@ -1,32 +1,34 @@
-import styled from "styled-components"
-import CartIcon from '../../../assets/img/cart.svg'
-import { Icons } from "../../../assets/UI"
+import styled from "styled-components";
+import CartIcon from "../../../assets/img/cart.svg";
+import { Icons } from "../../../assets/UI";
 
-const BaskBox = styled.button `
+const BaskBox = styled.button`
+  width: 5rem;
+  height: 1rem;
+  margin: 1rem;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  font-weight: bold;
+  display: flex;
+`;
 
-    width: 5rem;
-    height: 1rem;
-    margin: 1rem;
-    cursor: pointer;
-    border: none;
-    background: transparent;
-    color: ${(props) => props.color};
-    font-weight: bold;
-    
+const Count = styled.p`
+  color: white;
+  height: 1rem;
+  background-color: ${(props)=> props.bg};
+  padding: 0.1rem 0.3rem;
+  border-radius: 2rem;
+`;
 
-`
-
-
-
-export default function Cart (props) {
-
-
-
-    return(
-
-        <BaskBox onClick={props.onClick} color={props.items > 0? 'green': 'black'} >
-            <Icons secundary src={CartIcon}/>
-            {props.items}
-        </BaskBox>
-    )
+export default function Cart(props) {
+  return (
+    <BaskBox
+      onClick={props.onClick}
+      
+    >
+      <Icons secundary src={CartIcon} />
+      <Count bg={props.items > 0 ? "red" : "black"}>{props.items}</Count>
+    </BaskBox>
+  );
 }
