@@ -1,5 +1,4 @@
 import { createContext, useState } from "react";
-import ItemModels from "../models/itemsModels";
 
 
 export const ItemsContexts = createContext();

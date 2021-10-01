@@ -1,12 +1,12 @@
-import C3 from "../../../assets/img/i01_Mouse Gamer C3 TECH.jpg";
-import GFire from "../../../assets/img/GFIRE.jpg";
-import G503 from "../../../assets/img/G503.jpg";
-import GTB from '../../../assets/img/xzone gtb-01.png'
-import BrightKey  from '../../../assets/img/0541 Bright.jpg'
-import Klim from '../../../assets/img/Klim Chroma.jpg'
-import P60 from '../../../assets/img/p60.jpg'
-import Nemesis from '../../../assets/img/nm-837 nemesis.jpg'
-import RedDragon from '../../../assets/img/redragon seiryu.jpg'
+import C3 from "../../assets/img/i01_Mouse Gamer C3 TECH.jpg";
+import GFire from "../../assets/img/GFIRE.jpg";
+import G503 from "../../assets/img/G503.jpg";
+import GTB from '../../assets/img/xzone gtb-01.png'
+import BrightKey  from '../../assets/img/0541 Bright.jpg'
+import Klim from '../../assets/img/Klim Chroma.jpg'
+import P60 from '../../assets/img/p60.jpg'
+import Nemesis from '../../assets/img/nm-837 nemesis.jpg'
+import RedDragon from '../../assets/img/redragon seiryu.jpg'
 
 export const BannerProducts = [
   { name: "Mouse Gamer C3 TECH", price: 200, img: C3, id: "01" },
