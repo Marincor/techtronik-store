@@ -44,11 +44,11 @@ export default function Home() {
   }
 
   function renderContent() {
-    if (loading || cartIsOpen) {
+    if (loading) {
       return (
         <BoxLoading>
           <div>
-            <Lottie options={defaultOptions} height={400} width={400} />
+            <Lottie options={defaultOptions} height={200} width={200} />
           </div>
         </BoxLoading>
       );
@@ -90,8 +90,9 @@ export default function Home() {
 
   return (
     <Div>
+        {renderContent()}
       <Cart items={amountCount(includedItems)} onClick={()=>{openCart(cartIsOpen, setCartIsOpen)}} />
-      {renderContent()}
+    
       {cartIsOpen ? (
         <CartModal
           setCart={setCartIsOpen}

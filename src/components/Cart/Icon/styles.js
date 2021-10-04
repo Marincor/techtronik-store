@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const BaskBox = styled.button`
+
   width: 5rem;
   height: 1rem;
   margin: 1rem;

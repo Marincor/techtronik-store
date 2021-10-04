@@ -1,19 +1,16 @@
 import styled from "styled-components";
 
+export const BoxModal = styled.div`
+
+  width: auto;
+
+
+
+
+`
+
+
 export const ModalCart = styled.div`
-  border-radius: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 20vw;
-  height: 40vh;
-  overflow: scroll;
-  overflow-x: hidden;
-  border: 1px solid lightblue;
-  background-color: lightblue;
-  position: absolute;
-  right: 62rem;
-  animation: modal 0.5s;
 
   @keyframes modal {
     from {
@@ -24,6 +21,47 @@ export const ModalCart = styled.div`
       transform: translate3d(0px, 0px, 0px);
     }
   }
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 12rem;
+  height: 12rem;
+  overflow-y: scroll;
+  border: 1px solid lightblue;
+  background-color: lightblue;
+  animation: modal 0.5s;
+  
+  
+  @media screen and (min-width: 320px) {
+
+    width: 20000rem;
+    height: 20rem;
+    margin-left: 1rem;
+
+  }
+
+
+
+
+  @media screen and (min-width: 768px) {
+
+    border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 30rem;
+  height: 20em;
+  border: 1px solid lightblue;
+  background-color: lightblue;
+  animation: modal 0.5s;
+  overflow-y: scroll;
+  }
+
+
+
 `;
 
 export const ModalItems = styled.div`

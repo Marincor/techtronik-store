@@ -3,9 +3,17 @@ import styled from "styled-components";
 
 
 export const ImgBox = styled.img`
-  width: 22rem;
+  width: 10rem;
+  height: 10rem;
+  margin-bottom: 2rem;
+
+  @media screen and (min-width: 768px) {
+    width: 22rem;
   height: 18rem;
   margin-bottom: 2rem;
+
+
+  }
 `;
 
 export const Btn = styled.button`

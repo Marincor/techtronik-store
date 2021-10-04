@@ -36,7 +36,9 @@ export default function CartModal({ items, setItems, setCart }) {
   }
 
   return (
-    <ModalCart>
+
+      <ModalCart> 
+
       {items.length > 0 ? (
         <>
           {items.map((item) => {
@@ -58,6 +60,7 @@ export default function CartModal({ items, setItems, setCart }) {
           <EmptyCartAlert>Empty !</EmptyCartAlert>
         </BoxLottie>
       )}
-    </ModalCart>
+      </ModalCart>
+  
   );
 }
