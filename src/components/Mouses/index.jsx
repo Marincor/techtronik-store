@@ -1,10 +1,6 @@
-export default function Mouses () {
+import Layout from "../layout";
+import { Products } from "../products";
 
-
-    return(
-
-        <div>
-            
-        </div>
-    )
+export default function Mouses() {
+  return <Layout itemsToShow={Products.Mouses} />;
 }

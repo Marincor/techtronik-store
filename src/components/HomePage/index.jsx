@@ -1,6 +1,6 @@
 import Carousel, { autoplayPlugin } from "@brainhubeu/react-carousel";
 import "@brainhubeu/react-carousel/lib/style.css";
-import { BannerProducts } from "../products";
+import { Products } from "../products";
 import { Btn, ImgBox } from "../../assets/UI";
 import { useContext, useState } from "react";
 import Lottie from "react-lottie";
@@ -13,6 +13,8 @@ import { BoxCard, BoxLoading, Div, PriceBox, TitleBox } from "./styles";
 import getItemInfo from "../../functions/homePage/getItemsInfo";
 import openCart from "../../functions/homePage/openCart";
 import amountCount from "../../functions/homePage/amountCount";
+import { LoadingContext } from "../../contexts/loading";
+import { CartContexts } from "../../contexts/cart";
 
 // lottie config //
 const defaultOptions = {
@@ -25,9 +27,11 @@ const defaultOptions = {
 };
 
 export default function Home() {
-  const [loading, setLoading] = useState(false);
+
+  console.log(Products.Mouses)
+  const { loading, setLoading } = useContext(LoadingContext);
   const { includedItems, setIncludedItems } = useContext(ItemsContexts);
-  const [cartIsOpen, setCartIsOpen] = useState(false);
+  const { cartIsOpen, setCartIsOpen } = useContext(CartContexts);
 
   function addToCart(e) {
     e.preventDefault();
@@ -66,7 +70,7 @@ export default function Home() {
           ]}
           animationSpeed={1000}
         >
-          {BannerProducts.map((item) => {
+          {Products.Keyboards.map((item) => {
             return (
               <BoxCard key={item.id} id={item.id}>
                 <>
