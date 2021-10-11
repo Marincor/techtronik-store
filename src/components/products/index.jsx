@@ -7,6 +7,9 @@ import Klim from '../../assets/img/Klim Chroma.jpg'
 import P60 from '../../assets/img/p60.jpg'
 import Nemesis from '../../assets/img/nm-837 nemesis.jpg'
 import RedDragon from '../../assets/img/redragon seiryu.jpg'
+import Gshield from '../../assets/img/Gshield.jpg'
+import G3 from '../../assets/img/G320B5V2.jpg'
+import HG01 from '../../assets/img/hg01.jpg'
 
 export const Products = {
 
@@ -30,7 +33,14 @@ export const Products = {
     { name: "Mouse Pad P60", price: 85, img: P60, id: "07" },
     { name: "Mouse Pad Nemesis", price: 106, img: Nemesis, id: "08" },
     { name: "Mouse Pad RedDragon", price: 210, img: RedDragon, id: "09" },
-  ]
+  ],
+  Headphones: [
+
+
+    { name: "Headphone Gshield", price: 105, img: Gshield, id: "10" },
+    { name: "Headphone G320B5V2", price: 106, img: G3, id: "11" },
+    { name: "Headphone HG01", price: 210, img: HG01, id: "12" },
+  ],
 }
   
 

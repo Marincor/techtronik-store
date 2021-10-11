@@ -7,6 +7,9 @@ import Home from "./components/HomePage/index.jsx";
 import { ItemsProvider } from "./contexts/items";
 import { LoadingProvider } from "./contexts/loading";
 import { CartProvider } from "./contexts/cart";
+import Keyboards from "./components/Keyboards";
+import Headphones from "./components/Headphones";
+import MousePads from "./components/MousePads";
 
 function App() {
   return (
@@ -25,6 +28,15 @@ function App() {
 
               <Route exact path="/mouses">
                 <Mouses />
+              </Route>
+              <Route exact path="/keyboards">
+                <Keyboards />
+              </Route>
+              <Route exact path="/headphones">
+                <Headphones />
+              </Route>
+              <Route exact path="/mousepads">
+                <MousePads />
               </Route>
             </Switch>
           </Router>
