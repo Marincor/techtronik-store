@@ -2,7 +2,7 @@ import Carousel, { autoplayPlugin } from "@brainhubeu/react-carousel";
 import "@brainhubeu/react-carousel/lib/style.css";
 import { Products } from "../products";
 import { Btn, ImgBox } from "../../assets/UI";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import Lottie from "react-lottie";
 import LoadingAnimation from "../../assets/lotties/loading.json";
 import CartModal from "../Cart/Modal";
@@ -15,6 +15,8 @@ import openCart from "../../functions/homePage/openCart";
 import amountCount from "../../functions/homePage/amountCount";
 import { LoadingContext } from "../../contexts/loading";
 import { CartContexts } from "../../contexts/cart";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // lottie config //
 const defaultOptions = {
@@ -27,11 +29,10 @@ const defaultOptions = {
 };
 
 export default function Home() {
-
-  console.log(Products.Mouses)
   const { loading, setLoading } = useContext(LoadingContext);
   const { includedItems, setIncludedItems } = useContext(ItemsContexts);
   const { cartIsOpen, setCartIsOpen } = useContext(CartContexts);
+  const notify = () => toast.success("Item included to cart!");
 
   function addToCart(e) {
     e.preventDefault();
@@ -79,7 +80,7 @@ export default function Home() {
                 </>
                 <>
                   <ImgBox src={item.img} alt={item.name} />
-                  <Btn onClick={addToCart}>+ add to cart</Btn>
+                  <Btn onClick={(e)=>{ e.preventDefault(); addToCart(e); notify()}}>+ add to cart</Btn>
                 </>
               </BoxCard>
             );
@@ -89,14 +90,26 @@ export default function Home() {
     }
   }
 
-
-
-
   return (
     <Div>
-        {renderContent()}
-      <Cart items={amountCount(includedItems)} onClick={()=>{openCart(cartIsOpen, setCartIsOpen)}} />
-    
+      {renderContent()}
+      <Cart
+        items={amountCount(includedItems)}
+        onClick={() => {
+          openCart(cartIsOpen, setCartIsOpen);
+        }}
+      />
+      <ToastContainer 
+      position="top-right"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      />
       {cartIsOpen ? (
         <CartModal
           setCart={setCartIsOpen}

@@ -4,19 +4,21 @@ import { CartContexts } from "../../contexts/cart";
 import { ItemsContexts } from "../../contexts/items";
 import { LoadingContext } from "../../contexts/loading";
 import amountCount from "../../functions/homePage/amountCount";
-import getItemInfo from "../../functions/homePage/getItemsInfo";
 import openCart from "../../functions/homePage/openCart";
+import getItemInfo from "../../functions/layout/getItemsInfo";
 import ItemModels from "../../models/itemsModels";
 import Cart from "../Cart/Icon";
 import CartModal from "../Cart/Modal";
 import { ModalItems } from "../Cart/Modal/styles";
 import { BoxCard, PriceBox, TitleBox } from "../HomePage/styles";
 import { BoxItemsLayout } from "./styles";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default function Layout(props) {
   const { includedItems, setIncludedItems } = useContext(ItemsContexts);
   const { loading, setLoading } = useContext(LoadingContext);
   const { cartIsOpen, setCartIsOpen } = useContext(CartContexts);
+  const notify = () => toast.success("Item included to cart!");
 
   function addToCart(e) {
     e.preventDefault();
@@ -28,14 +30,17 @@ export default function Layout(props) {
     }, 1000);
 
     /// get items information //
-    const currentNameItem =
-      e.target.parentElement.parentElement.firstChild.firstChild.textContent;
 
-    console.log(currentNameItem);
+    getItemInfo (e, ItemModels, includedItems, setIncludedItems);
+
+
+    notify()
+    
   }
 
   return (
     <BoxItemsLayout>
+        <ToastContainer />
       <Cart
         items={amountCount(includedItems)}
         onClick={() => {
