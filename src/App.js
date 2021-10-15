@@ -10,6 +10,7 @@ import { CartProvider } from "./contexts/cart";
 import Keyboards from "./components/Keyboards";
 import Headphones from "./components/Headphones";
 import MousePads from "./components/MousePads";
+import CartPage from "./components/CartPage";
 
 function App() {
   return (
@@ -37,6 +38,9 @@ function App() {
               </Route>
               <Route exact path="/mousepads">
                 <MousePads />
+              </Route>
+              <Route exact path="/cart">
+                <CartPage />
               </Route>
             </Switch>
           </Router>

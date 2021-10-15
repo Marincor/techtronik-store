@@ -1,4 +1,5 @@
 import Lottie from "react-lottie";
+import { useHistory } from "react-router";
 import animationCartEmpty from "../../../assets/lotties/empty-cart.json";
 import { Btn } from "../../../assets/UI";
 import getCurrentItems from "../../../functions/modalCart/getCurrentItems";
@@ -35,6 +36,10 @@ export default function CartModal({ items, setItems, setCart }) {
     getCurrentItems(items, currentItemById, setItems, setCart);
   }
 
+  const history = useHistory();
+
+
+
   return (
 
       <ModalCart> 
@@ -52,7 +57,7 @@ export default function CartModal({ items, setItems, setCart }) {
               </ModalItems>
             );
           })}
-          <Btn> 🛒 go to the cart</Btn>
+          <Btn onClick={(e)=>{ e.preventDefault(); history.push("/cart")}}> 🛒 go to the cart</Btn>
         </>
       ) : (
         <BoxLottie>
