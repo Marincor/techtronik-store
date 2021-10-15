@@ -9,14 +9,13 @@ import getItemInfo from "../../functions/layout/getItemsInfo";
 import ItemModels from "../../models/itemsModels";
 import Cart from "../Cart/Icon";
 import CartModal from "../Cart/Modal";
-import { ModalItems } from "../Cart/Modal/styles";
 import { BoxCard, PriceBox, TitleBox } from "../HomePage/styles";
 import { BoxItemsLayout } from "./styles";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 export default function Layout(props) {
   const { includedItems, setIncludedItems } = useContext(ItemsContexts);
-  const { loading, setLoading } = useContext(LoadingContext);
+  const { setLoading } = useContext(LoadingContext);
   const { cartIsOpen, setCartIsOpen } = useContext(CartContexts);
   const notify = () => toast.success("Item included to cart!");
 
