@@ -75,4 +75,5 @@ export const Btn = styled.button`
 
 export const BoxPayment = styled(BoxCard)`
   border: 1px solid black;
+  margin: 1rem;
 `;

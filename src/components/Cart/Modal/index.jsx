@@ -57,7 +57,7 @@ export default function CartModal({ items, setItems, setCart }) {
               </ModalItems>
             );
           })}
-          <Btn onClick={(e)=>{ e.preventDefault(); history.push("/cart")}}> 🛒 go to the cart</Btn>
+          <Btn onClick={(e)=>{ e.preventDefault(); setCart(false); history.push("/cart"); }}> 🛒 go to the cart</Btn>
         </>
       ) : (
         <BoxLottie>
