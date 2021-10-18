@@ -1,7 +1,6 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { useHistory } from "react-router";
 import { ItemsContexts } from "../../contexts/items";
-import { LoadingContext } from "../../contexts/loading";
 import getCurrentItems from "../../functions/cartPage/getCurrentItems";
 import {
   Box,
@@ -15,7 +14,9 @@ import {
 
 export default function CartPage() {
   const { includedItems, setIncludedItems } = useContext(ItemsContexts);
-  const { loading, setLoading } = useContext(LoadingContext);
+  
+
+
 
   const history = useHistory();
 
@@ -32,25 +33,30 @@ export default function CartPage() {
   }
 
   let amounts = null;
-  let price = null;
+  let total = null;
 
   if (includedItems.length > 0) {
     amounts = includedItems.reduce((accumulator, currentValue) => {
       return JSON.parse(accumulator + currentValue._amount);
     }, 0);
   } else {
-    console.log(false);
+    console.log('empty amount');
   }
 
   if (includedItems.length > 0) {
-    price = includedItems.reduce((accumulator, currentValue) => {
-      return JSON.parse(accumulator + currentValue._price);
+    total = includedItems.map((item) => {
+      return (item._total = item._amount * item._price);
+    });
+
+    total = includedItems.reduce((accumulator, currentValue) => {
+      return JSON.parse(accumulator + currentValue._total);
     }, 0);
   } else {
-    console.log(false);
+
+    console.log('empt total')
   }
 
-  console.log(price);
+
 
   return (
     <Box>
@@ -73,7 +79,7 @@ export default function CartPage() {
       ))}
       <BoxPayment>
         <Text>Amount: {amounts}</Text>
-        <Text>Total: $ {price}</Text>
+        <Text>Total: $ {total}</Text>
 
         <Btn>Pay 💳</Btn>
       </BoxPayment>
