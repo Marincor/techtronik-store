@@ -6,13 +6,13 @@ export default class ItemModels {
   _id;
   _total
 
-  constructor(name, price, img) {
+  constructor(name, price, img, id) {
     this._name = name;
     this._price = price;
     this._img = img;
     this._amount = 1;
-    this._id = Math.round(Math.random()*25);
-    this._total = price;
+    this._id = Math.round(Math.random()*12545);
+    this._total = this._amount * this._price;
   }
 
   get name() {
@@ -34,5 +34,18 @@ export default class ItemModels {
 
     return this._total
   }
+
+
+  increaseAmount() {
+
+    this._amount += 1;
+  }
+
+  decreaseAmount() {
+
+    this._amount -= 1;
+  }
+
+
 }
 

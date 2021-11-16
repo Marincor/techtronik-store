@@ -1,8 +1,13 @@
+
 import CartIcon from "../../../assets/img/cart.svg";
 import { Icons } from "../../../assets/UI";
 import { BaskBox, Count } from "./styles";
 
 export default function Cart(props) {
+
+
+
+
   return (
     <BaskBox onClick={props.onClick}>
       <Icons secundary src={CartIcon} />
