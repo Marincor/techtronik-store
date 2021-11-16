@@ -3,7 +3,6 @@ import { useHistory } from "react-router";
 import { useContext } from "react/cjs/react.development";
 import animationCartEmpty from "../../../assets/lotties/empty-cart.json";
 import { Btn } from "../../../assets/UI";
-import { CartContexts } from "../../../contexts/cart";
 import { ItemsContexts } from "../../../contexts/items";
 import {
   AmountItems,
