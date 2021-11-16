@@ -1,4 +1,4 @@
-import { useEffect } from "react/cjs/react.development";
+
 import CartIcon from "../../../assets/img/cart.svg";
 import { Icons } from "../../../assets/UI";
 import { BaskBox, Count } from "./styles";

@@ -38,7 +38,7 @@ export default function CartPage() {
     let amount = 0;
     let total = 0;
 
-    includedItems.map((item) => {
+    includedItems.forEach((item) => {
       amount += item._amount;
       total += item._amount * item._price;
     });

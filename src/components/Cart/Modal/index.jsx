@@ -5,7 +5,6 @@ import animationCartEmpty from "../../../assets/lotties/empty-cart.json";
 import { Btn } from "../../../assets/UI";
 import { CartContexts } from "../../../contexts/cart";
 import { ItemsContexts } from "../../../contexts/items";
-import getCurrentItems from "../../../functions/modalCart/getCurrentItems";
 import {
   AmountItems,
   BoxLottie,
@@ -30,7 +29,7 @@ const defaultOptions = {
 
 export default function CartModal({ items, setItems, setCart }) {
   const { includedItems, setIncludedItems } = useContext(ItemsContexts);
-  const { cartIsOpen, setCartIsOpen } = useContext(CartContexts);
+
 
   function deleteItem(id) {
     // find items the current item to delete //

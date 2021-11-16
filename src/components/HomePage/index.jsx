@@ -10,7 +10,6 @@ import Cart from "../Cart/Icon/index";
 import { ItemsContexts } from "../../contexts/items";
 import ItemModels from "../../models/itemsModels";
 import { BoxCard, BoxLoading, Div, PriceBox, TitleBox } from "./styles";
-import getItemInfo from "../../functions/homePage/getItemsInfo";
 import openCart from "../../functions/homePage/openCart";
 import amountCount from "../../functions/homePage/amountCount";
 import { LoadingContext } from "../../contexts/loading";
@@ -51,7 +50,7 @@ export default function Home() {
 
     // searching if the current item is already at the cart //
 
-    const searchCurrentItem = arr.find((item) => item._id == id);
+    const searchCurrentItem = arr.find((item) => item._id === id);
 
     if (searchCurrentItem) {
       searchCurrentItem.increaseAmount();
