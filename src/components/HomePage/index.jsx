@@ -34,7 +34,7 @@ export default function Home() {
   const { cartIsOpen, setCartIsOpen } = useContext(CartContexts);
   const notify = () => toast.success("Item included to cart!");
 
-  function addToCart(e) {
+  function addToCart(e, name, price, img, id) {
     e.preventDefault();
 
     setLoading(true);
@@ -43,11 +43,25 @@ export default function Home() {
       setLoading(false);
     }, 1000);
 
-    /// get items information //
+    // creating new object for the currentItem //
 
-    getItemInfo(e, ItemModels, includedItems, setIncludedItems);
+    const newItem = new ItemModels(name, price, img, id);
+
+    const arr = includedItems || [];
+
+    // searching if the current item is already at the cart //
+
+    const searchCurrentItem = arr.find((item) => item._id == id);
+
+    if (searchCurrentItem) {
+      searchCurrentItem.increaseAmount();
+    } else {
+      arr.push(newItem);
+      setIncludedItems(arr);
+    }
   }
 
+  console.log(includedItems);
   function renderContent() {
     if (loading) {
       return (
@@ -80,7 +94,15 @@ export default function Home() {
                 </>
                 <>
                   <ImgBox src={item.img} alt={item.name} />
-                  <Btn onClick={(e)=>{ e.preventDefault(); addToCart(e); notify()}}>+ add to cart</Btn>
+                  <Btn
+                    onClick={(e) => {
+                      e.preventDefault();
+                      addToCart(e, item.name, item.price, item.img, item.id);
+                      notify();
+                    }}
+                  >
+                    + add to cart
+                  </Btn>
                 </>
               </BoxCard>
             );
@@ -99,16 +121,16 @@ export default function Home() {
           openCart(cartIsOpen, setCartIsOpen);
         }}
       />
-      <ToastContainer 
-      position="top-right"
-      autoClose={5000}
-      hideProgressBar={false}
-      newestOnTop={false}
-      closeOnClick
-      rtl={false}
-      pauseOnFocusLoss
-      draggable
-      pauseOnHover
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
       />
       {cartIsOpen ? (
         <CartModal

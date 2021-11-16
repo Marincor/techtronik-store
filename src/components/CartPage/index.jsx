@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useHistory } from "react-router";
 import { ItemsContexts } from "../../contexts/items";
-import getCurrentItems from "../../functions/cartPage/getCurrentItems";
+
 import {
   Box,
   BoxCard,
@@ -14,50 +14,42 @@ import {
 
 export default function CartPage() {
   const { includedItems, setIncludedItems } = useContext(ItemsContexts);
-  
-
-
 
   const history = useHistory();
 
   function deleteItem(id) {
-    const currentItemById = JSON.parse(id);
+    const currentItem = includedItems.find((item) => item._id === id);
 
-    // find items the current item to delete //
-    getCurrentItems(includedItems, currentItemById, setIncludedItems);
+    console.log(currentItem);
+    if (currentItem._amount > 1) {
+      includedItems.find((item) => item._id === id).decreaseAmount();
+    } else {
+      setIncludedItems(includedItems.filter((item) => item._id !== id));
+    }
 
     history.push("/");
+
     setTimeout(() => {
       history.push("/cart");
-    }, -1);
+    }, 10);
   }
 
-  let amounts = null;
-  let total = null;
+  const result = () => {
+    let amount = 0;
+    let total = 0;
 
-  if (includedItems.length > 0) {
-    amounts = includedItems.reduce((accumulator, currentValue) => {
-      return JSON.parse(accumulator + currentValue._amount);
-    }, 0);
-  } else {
-    console.log('empty amount');
-  }
-
-  if (includedItems.length > 0) {
-    total = includedItems.map((item) => {
-      return (item._total = item._amount * item._price);
+    includedItems.map((item) => {
+      amount += item._amount;
+      total += item._amount * item._price;
     });
 
-    total = includedItems.reduce((accumulator, currentValue) => {
-      return JSON.parse(accumulator + currentValue._total);
-    }, 0);
-  } else {
+    return {
+      amount,
+      total,
+    };
+  };
 
-    console.log('empt total')
-  }
-
-
-
+  console.log(result().amount);
   return (
     <Box>
       {includedItems.map((item) => (
@@ -78,8 +70,8 @@ export default function CartPage() {
         </BoxCard>
       ))}
       <BoxPayment>
-        <Text>Amount: {amounts}</Text>
-        <Text>Total: $ {total}</Text>
+        <Text>Amount: {result().amount} </Text>
+        <Text>Total: $ {result().total}</Text>
 
         <Btn>Pay 💳</Btn>
       </BoxPayment>

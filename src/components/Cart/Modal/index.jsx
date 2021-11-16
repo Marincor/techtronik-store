@@ -1,7 +1,10 @@
 import Lottie from "react-lottie";
 import { useHistory } from "react-router";
+import { useContext } from "react/cjs/react.development";
 import animationCartEmpty from "../../../assets/lotties/empty-cart.json";
 import { Btn } from "../../../assets/UI";
+import { CartContexts } from "../../../contexts/cart";
+import { ItemsContexts } from "../../../contexts/items";
 import getCurrentItems from "../../../functions/modalCart/getCurrentItems";
 import {
   AmountItems,
@@ -26,24 +29,25 @@ const defaultOptions = {
 };
 
 export default function CartModal({ items, setItems, setCart }) {
-  function deleteItem(e) {
-    const currentItemById = JSON.parse(
-      e.target.previousElementSibling.previousElementSibling
-        .previousElementSibling.previousElementSibling.id
-    );
+  const { includedItems, setIncludedItems } = useContext(ItemsContexts);
+  const { cartIsOpen, setCartIsOpen } = useContext(CartContexts);
 
+  function deleteItem(id) {
     // find items the current item to delete //
-    getCurrentItems(items, currentItemById, setItems, setCart);
+
+    const currentItem = includedItems.find((item) => item._id === id);
+
+    if (currentItem._amount > 1) {
+      includedItems.find((item) => item._id === id).decreaseAmount();
+    } else {
+      setIncludedItems(includedItems.filter((item) => item._id !== id));
+    }
   }
 
   const history = useHistory();
 
-
-
   return (
-
-      <ModalCart> 
-
+    <ModalCart>
       {items.length > 0 ? (
         <>
           {items.map((item) => {
@@ -53,11 +57,27 @@ export default function CartModal({ items, setItems, setCart }) {
                 <AmountItems> {item._amount} </AmountItems>
                 <PriceItems> {item.price ? `$ ${item.price}` : ""}</PriceItems>
                 <ImgItems src={item.img} />
-                <Btn onClick={deleteItem}> 🗑 Delete</Btn>
+                <Btn
+                  onClick={() => {
+                    deleteItem(item._id);
+                  }}
+                >
+                  {" "}
+                  🗑 Delete
+                </Btn>
               </ModalItems>
             );
           })}
-          <Btn onClick={(e)=>{ e.preventDefault(); setCart(false); history.push("/cart"); }}> 🛒 go to the cart</Btn>
+          <Btn
+            onClick={(e) => {
+              e.preventDefault();
+              setCart(false);
+              history.push("/cart");
+            }}
+          >
+            {" "}
+            🛒 go to the cart
+          </Btn>
         </>
       ) : (
         <BoxLottie>
@@ -65,7 +85,6 @@ export default function CartModal({ items, setItems, setCart }) {
           <EmptyCartAlert>Empty !</EmptyCartAlert>
         </BoxLottie>
       )}
-      </ModalCart>
-  
+    </ModalCart>
   );
 }
